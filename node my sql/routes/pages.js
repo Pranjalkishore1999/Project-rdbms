@@ -18,4 +18,9 @@ router.get('/contactus',(req,res) =>{
     res.render('contactus');
 
 });
+
+router.get('/dashboard',(req,res) =>{
+    res.render('dashboard');
+
+});
 module.exports = router;

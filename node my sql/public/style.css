@@ -237,3 +237,15 @@
         font-size: 13px;
     }
           /*    Login CSS ends     */
+    i {
+        margin-right: 10px;
+    }
+    .col-12{
+        font-weight: bold;
+    }
+    .card-title {
+        font-weight: 400;
+        margin: 0;
+        color: #fff;
+    }
+    

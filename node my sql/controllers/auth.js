@@ -43,7 +43,7 @@ try{
          httpOnly:true
       }
        res.cookie('jwt',token,cookieOptions);
-       res.status(200).redirect("/");
+       res.status(200).redirect("/dashboard");
      }
     })
  
@@ -64,12 +64,12 @@ exports.register = (req,res) =>{
       }
       if(results.length>0){
           return res.render('register',{
-              message :'email already used'
+              message :'Email Already Used'
           });
       }
       else if(password!=passwordconfirm ){
         return res.render('register',{
-            message :'do not matched passwords'
+            message :'Password Do Not Matched'
         });
       }
       
@@ -85,7 +85,7 @@ exports.register = (req,res) =>{
         else{
             console.log(result);
             return res.render('register',{
-                message :'user registered successfully'
+                message :'User Registered Successfully,Kindly Login'
             });
         }
      });
