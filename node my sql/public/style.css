@@ -248,4 +248,11 @@
         margin: 0;
         color: #fff;
     }
+    .footer{
+        margin-top: -200px;
+    }
+    #none{
+        text-decoration: none;
+        
+    }
     

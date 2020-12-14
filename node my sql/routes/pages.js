@@ -23,4 +23,20 @@ router.get('/dashboard',(req,res) =>{
     res.render('dashboard');
 
 });
+
+router.get('/aboutus',(req,res) =>{
+    res.render('aboutus');
+
+});
+
+router.get('/faq',(req,res) =>{
+    res.render('faq');
+
+});
+
+router.get('/process',(req,res) =>{
+    res.render('process');
+
+});
+
 module.exports = router;

@@ -9,14 +9,14 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
-//login page k liye
+//login page ke liye
 exports.login = async (req,res) =>{
 try{
    const {email,password} =req.body;
    if(!email|| !password)
    {
        return res.status(400).render('login',{
-           message : 'please provide an email and password'
+           message : 'Please Provide An Email And Password'
        })
    }
    db.query('SELECT * FROM users WHERE email =?',[email],async(error,results) =>{
@@ -24,7 +24,7 @@ try{
         if(!(results)  || !(await bcrypt.compare(password, results[0].password)))
         {
         res.status(401).render('login',{
-            message : 'email or password is incorrect'
+            message : 'Email Or Password Is Incorrect'
         })
      }
      else{
