@@ -1,4 +1,5 @@
 const express= require("express");
+var session = require('express-session');
 const path= require('path');
 const mysql=require("mysql");
 const dotenv=require('dotenv');
@@ -14,6 +15,12 @@ const db = mysql.createConnection({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
 });
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 const publicDirectory = path.join(__dirname,'./public');
 app.use(express.static(publicDirectory));
 
@@ -24,7 +31,7 @@ app.use(express.static('views/images'));
 app.use(express.json());
 app.use(cookieParser());
 //console.log(__dirname)
-
+app.set('view engine','ejs');
 app.set('view engine', 'hbs');
 
 db.connect((error) =>{
