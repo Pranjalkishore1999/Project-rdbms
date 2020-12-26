@@ -181,24 +181,15 @@
 										<hr/>
 									</div>
 								</div>
-					<form action="" autocomplete="off" id="form1" method="post">
+					<form action="/auth/updateprofile" autocomplete="off" id="form1" method="post">
 						<div class="form-horizontal">
-							<div class="form-group">
-								<div class="row">
-									<label class="col-md-4 text-right required" for="Username">Username<b class="text-danger">*</b>	
-									</label>
-										<div class="col-md-6">
-											<input autocomplete="off" class="form-control text-box single-line" type="text" name="Username" readonly="readonly" value="vaibhav anand">
-											<input id="Username" type="hidden" name="Username" value="vaibhav anand">
-										</div>
-								</div>
-							</div>
+
 							<div class="form-group">
                     			<div class="row">
                         			<label class="col-md-4 text-right required" for="Name">Name<b class="text-danger">*</b></label>
                         				<div class="col-md-6">
                             
-                            				<input autocomplete="off" class="form-control text-box single-line"id="Name" name="Name" type="text" value="<%=name%>"required/>
+                            				<input autocomplete="off" class="form-control text-box single-line"id="Name" name="Name" readonly="readonly" type="text" value="<%=name%>"required/>
                             				<span class="field-validation-valid text-danger"></span>
                         				</div>
                     			</div>
@@ -209,15 +200,15 @@
                         				<div class="col-md-6">
                             				<div class="row">
                                 				<div class="col-md-4">
-                                    				<input checked="checked" id="Sex" name="Sex" type="radio" value="M" />
+                                    				<input <% if(sex==='M'){ %> checked="checked" <%}%> id="Sex" name="sex" type="radio" value="M" disabled />
                                     				<label for="Male">Male</label>
                                 				</div>
                                 				<div class="col-md-4">
-                                    				<input id="Sex" name="Sex" type="radio" value="F" />
+                                    				<input  <% if (sex==='F') { %>checked="checked"  <%}%>  id="Sex" name="sex" r type="radio" value="F" disabled />
                                     				<label for="Female">Female</label>
                                 				</div>
                                 				<div class="col-md-4">
-                                    				<input id="Sex" name="Sex" type="radio" value="O" />
+                                    				<input  <% if (sex==='0') { %>  checked="checked"  <%}%> id="Sex" name="sex"  type="radio" value="O" disabled />
                                     				<label for="Transgender">Transgender</label>
                                					</div>
                             				</div>
@@ -229,7 +220,7 @@
                     <div class="row">
                        	<label class="col-md-4 text-right required" for="Country">Country<b class="text-danger">*</b></label>
        						<div class="col-md-6">
-                     			<input autocomplete="off" class="form-control text-box single-line"id="Country" name="Name" type="text" value="India"required/>
+                     			<input autocomplete="off" class="form-control text-box single-line"id="Country" name="name" readonly="readonly" type="text" value="India"required/>
                             		<span class="field-validation-valid text-danger"></span>
                         	</div>
                     </div>
@@ -238,7 +229,7 @@
                     <div class="row">
                        	<label class="col-md-4 text-right required" for="State">State<b class="text-danger">*</b></label>
        						<div class="col-md-6">
-                     			<input autocomplete="off" class="form-control text-box single-line"id="State" name="State" type="text" value="Jharkhand"required/>
+                     			<input autocomplete="off" class="form-control text-box single-line"id="State" name="state" type="text" value="<%=state%>"required/>
                             		<span class="field-validation-valid text-danger"></span>
                         	</div>
                     </div>
@@ -247,7 +238,7 @@
                     <div class="row">
                        	<label class="col-md-4 text-right required" for="District">District<b class="text-danger">*</b></label>
        						<div class="col-md-6">
-                     			<input autocomplete="off" class="form-control text-box single-line"id="District" name="District" type="text" value="Jamshedpur" />
+                     			<input autocomplete="off" class="form-control text-box single-line"id="District" name="district" type="text" value="<%=district%>" />
                             		<span class="field-validation-valid text-danger"></span>
                         	</div>
                     </div>
@@ -256,7 +247,7 @@
                     <div class="row">
                         <label class="col-md-4 text-right" for="Pincode">Pincode</label>
                         <div class="col-md-6">
-                            <input autocomplete="off" class="form-control text-box single-line"id="Pincode" maxlength="6" name="Pincode" type="text" value="831013" />
+                            <input autocomplete="off" class="form-control text-box single-line"id="Pincode" maxlength="6" name="pincode" type="text" value="" />
                             <span class="field-validation-valid text-danger"></span>
                         </div>
                     </div>
@@ -290,7 +281,7 @@
                         <div class="row">
                             <label class="col-md-4 text-right required" for="MobileNo">Mobile number<b class="text-danger">*</b></label>
                             <div class="col-md-5">
-                                <input autocomplete="off" class="form-control text-box single-line"maxlength="10" name="MobileNo" type="text" value="6202242306" />
+                                <input autocomplete="off" class="form-control text-box single-line"maxlength="10" name="mobileno" type="text" value="<%=mobileno%>" />
                                 <span class="field-validation-valid text-danger"></span>
                             </div>
                             </div>
@@ -300,7 +291,7 @@
                     <div class="row">
                         <label class="col-md-4 text-right required" for="EmailAddress">E-mail address<b class="text-danger">*</b></label>
                         <div class="col-md-5">
-                            <input autocomplete="off" class="form-control text-box single-line"id="EmailAddress" name="EmailAddress" type="email" value="<%=email%>" />
+                            <input autocomplete="off" class="form-control text-box single-line"id="EmailAddress" name="email" type="email" value="<%=email%>" />
                             <span class="field-validation-valid text-danger"></span>
                         </div>
                         </div>
@@ -317,7 +308,10 @@
 									</div>
 									
 								</form>
-								
+								<% if(message) {%>
+					
+									<h4 class="alert alert-danger mt-4"><%=message%></h4>
+														 <%}%>
 							</div>
 							
 						</div>

@@ -6,6 +6,8 @@ const express=require('express');
 const bodyparser=require('body-parser');
 const nodemailer=require('nodemailer');
 const path=require('path');
+const multer = require('multer');
+
 
 
 const app=express();
@@ -54,6 +56,10 @@ try{
         req.session.loggedin = true;
         req.session.name = results[0].name;
         req.session.email = results[0].email;
+        req.session.sex=results[0].sex;
+        req.session.district=results[0].district;
+        req.session.state=results[0].state;
+        req.session.mobileno=results[0].mobile_no;
          const id =results[0].id;
  
          const token = jwt.sign({ id },process.env.JWT_SECRET,{
@@ -165,6 +171,29 @@ else{
 }
  }
  
+ //update profile k liye
+ exports.updateprofile=(req,res)=>{
+    const{email,mobileno,district,state} = req.body; 
+    var sql = "UPDATE users SET email =?,mobile=?,district=?,state=? WHERE email = ?";
+    let data=[email,mobileno,district,state,req.session.email];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('updateprofile.ejs', {name:req.session.name,email:email,district:district,state:state,mobileno:mobileno,sex:req.session.sex,
+          message :'Profile updated successfully'
+        });
+    }
+ 
+});
+ }
+
+ //reg grievance for banking
+ exports.banking =(req,res)=>{
+     console.log(req.body.bankname);
+ 
+ }
+
  
 //register page ke liye   
 exports.register = (req,res) =>{
@@ -191,7 +220,7 @@ exports.register = (req,res) =>{
         let hashedPasssword = await bcrypt.hash(password,8);
      //console.log(hashedPassword);
 
-     db.query('INSERT INTO users SET ?', {name:name,email:email,sex:sex,state:state,district:district,mobile_no:mobileno,password:hashedPasssword},(error,result)=>{
+     db.query('INSERT INTO users SET ?', {name:name,email:email,sex:sex,state:state,district:district,mobile:mobileno,password:hashedPasssword},(error,result)=>{
          if(error)
          {
          console.log(error);
