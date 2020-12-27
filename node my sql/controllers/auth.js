@@ -12,6 +12,25 @@ const multer = require('multer');
 
 const app=express();
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype == 'image/pdf') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+const upload = multer({ storage: storage, fileFilter: fileFilter });
+
+
 
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -61,6 +80,7 @@ try{
         req.session.state=results[0].state;
         req.session.mobileno=results[0].mobile_no;
          const id =results[0].id;
+         req.session.id=results[0].id;
  
          const token = jwt.sign({ id },process.env.JWT_SECRET,{
            expiresIn: process.env.JWT_EXPIRES_IN  
@@ -76,6 +96,18 @@ try{
       }
       var user = { name:results[0].name, email: results[0].email};
        res.cookie('jwt',token,cookieOptions);
+       db.query('SELECT * FROM banking WHERE id =?',[req.session.id],async(error,results) =>{
+           if(error)
+           {
+               console.log(error)
+           }
+           else
+           {
+               (results).forEach(ele=> {
+                   
+               });
+           }
+       })
        res.status(200).render("dashboard.ejs",{user:user});
      }
     })
@@ -173,7 +205,8 @@ else{
  
  //update profile k liye
  exports.updateprofile=(req,res)=>{
-    const{email,mobileno,district,state} = req.body; 
+    const{email,mobileno,district,state} = req.body;
+    console.log(req.body); 
     var sql = "UPDATE users SET email =?,mobile=?,district=?,state=? WHERE email = ?";
     let data=[email,mobileno,district,state,req.session.email];
     db.query(sql,data, (err, result)=>{
@@ -189,10 +222,8 @@ else{
  }
 
  //reg grievance for banking
- exports.banking =(req,res)=>{
-     console.log(req.body.bankname);
  
- }
+
 
  
 //register page ke liye   

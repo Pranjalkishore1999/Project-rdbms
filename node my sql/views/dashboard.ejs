@@ -36,22 +36,22 @@
 						<li>
 							<a href="grievance_dashboard.html" class="loginlinks">
 								<img src="/ico_home.png" alt="Home Image">
-								<span class="hidden-sm-down">Home</span>
+								<span class="hidden-sm-down"><button type="submit">Home</button></span>
 							</a>
 						</li>
-						<li><a href="./contactus.html" class="loginlinks"><img src="/ico_contact.png" alt="Contact Us"><span class="hidden-sm-down">Contact Us</span>
+						<li><a href="./contactus.html" class="loginlinks"><img src="/ico_contact.png" alt="Contact Us"><span class="hidden-sm-down"><button type="submit">Contact Us</button></span>
 						</a>
 					    </li>
 					    <li>
 					    	<a href="./aboutus.html" class="loginlinks">
 					    		<img src="/ico_about.png" alt="About Us">
-					    		<span class="hidden-sm-down">About Us</span>
+					    		<span class="hidden-sm-down"><button type="submit">About Us</button></span>
 						</a>
 					    </li>
 					     <li>
 					    	<a href="./faq.html" class="loginlinks faq">
 					    		<img src="/ico_help.png" alt="FAQ/Help">
-					    		<span class="hidden-sm-down">FAQ/Help</span>
+					    		<span class="hidden-sm-down"><button type="submit">FAQ/Help</button></span>
 						    </a>
 					    </li>
 					</ul>
@@ -81,41 +81,41 @@
 		<div class="main-navbar bg-dark">
 			<div class="container-fluid">
 				<nav class="navbar navbar-expand-md navbar-dark d-flex justify-content-between">
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+					<button type="submit" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 						<span class="navbar-toggle-icon">
 						</span>
 					</button>
 					<div class="collapse navbar-collapse" id="collapsibleNavbar">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="/Status"><img src="/ico_view.png" alt="">View Status<span class="sr-only">(current)</span></a>
+								<a class="nav-link" href="/Status"><img src="/ico_view.png" alt=""><button type="submit">View Status</button><span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"data-toggle="dropdown"aria-expanded="false">
-									<img src="/ico_redress.png" alt="">Redress Process
+									<img src="/ico_redress.png" alt=""><button type="submit">Redress Process</button>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-									<a class="dropdown-item"href="">Redress Mechanism</a>
-									<a class="dropdown-item" href="./process.html">Redress Process Flow</a>
+									<a class="dropdown-item"href=""><button type="submit">Redress Mechanism</button></a>
+									<a class="dropdown-item" href="./process.html"><button type="submit">Redress Process Flow</button></a>
 								</div>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"data-toggle="dropdown"aria-expanded="false">
-									<img src="/ico_grievance.png" alt="">Grievance
+									<img src="/ico_grievance.png" alt=""><button type="submit">Grievance</button>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-									<a class="dropdown-item"href="./login.html">Lodge Personnel Grievance</a>
-									<a class="dropdown-item" href="./login.html">Lodge Public Grievance</a>
+									<a class="dropdown-item"href="./organisation.html"><button type="submit">Lodge Personnel Grievance</button></a>
+									<a class="dropdown-item" href="./organisation.html"><button type="submit">Lodge Public Grievance</button></a>
 									 <a class="dropdown-item" href="">View Status</a>
 								</div>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link"href=""><i class="fa fa-bell" aria-hidden="true"></i>Notices<span class="sr-only">(current)</span></a>
+								<a class="nav-link"href=""><i class="fa fa-bell" aria-hidden="true"></i><button type="submit">Notices</button><span class="sr-only">(current)</span></a>
 							</li>
 						</ul>
 					</div>
 					<div class="signIn">
-						<span class="text-white"><strong>Welcome :</strong><%=user.name%></span>
+						<span class="text-white"><strong>Welcome :</strong>VAIBHAV ANAND</span>
 					</div>
 				</nav>
 			</div>
@@ -132,31 +132,31 @@
 							<ul class="nav flex-column">
 								<li class="nav-item">
 									<a class="nav-link active"href="">
-										<i class="fa fa-dashboard"></i>Dashboard<span class="sr-only">(current)</span>
+										<i class="fa fa-dashboard"></i><button type="submit" style="color: black">Dashboard</button><span class="sr-only">(current)</span>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="/auth/organisation">
-										<i class="fa fa-plus-square"></i>Lodge Public Grievance
+									<a class="nav-link"href="./organisation.html">
+										<i class="fa fa-plus-square"></i><button type="submit">Lodge Public Grievance</button>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="/auth/updateprofile">
-										<i class="fa fa-edit"></i>Edit Profile
+									<a class="nav-link"href="./edit_profile.html">
+										<i class="fa fa-edit"></i><button type="submit">Edit Profile</button>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"href="./change_password.html">
+										<i class="fa fa-lock"></i><button type="submit">Change Password</button>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link"href="">
-										<i class="fa fa-lock"></i><form action="/auth/send" method="POST"><button>Change Password</button></form>
+										<i class="fa fa-inr"></i><button type="submit">Loan Status</button>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="">
-										<i class="fa fa-inr"></i>Loan Status
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-warning" href="/auth/login"><strong><i class="fa fa-power-off"></i>Sign out</strong>
+									<a class="nav-link text-warning" href=""><strong><i class="fa fa-power-off"></i><button type="submit">Sign out</button></strong>
 									</a>
 								</li>
 							</ul>
@@ -239,6 +239,48 @@
             							</tr>
             							</thead>
             							<tbody>
+											<% data.forEach( function( items ) {  %>
+            								<tr>
+                                                <td>1</td>
+						                        <td>items.regno</td>
+						                        <td>items.date</td>
+						                        <td>items.grievance/td>
+						                        <td>items.status</td>    
+						                        <td>More...</td>                                      
+											</tr>
+										<% }) %>
+                    						<tr>
+                                                <td>1</td>
+						                        <td>987654</td>
+						                        <td>21/12/2020</td>
+						                        <td>Health</td>
+						                        <td>Yes/No</td> 
+						                        <td>More...</td>                                         
+                    						</tr>
+                    						<tr>
+                                                <td>1</td>
+						                        <td>987654</td>
+						                        <td>21/12/2020</td>
+						                        <td>Health</td>
+						                        <td>Yes/No</td> 
+						                        <td>More...</td>                                         
+                    						</tr>
+                    						<tr>
+                                                <td>1</td>
+						                        <td>987654</td>
+						                        <td>21/12/2020</td>
+						                        <td>Health</td>
+						                        <td>Yes/No</td> 
+						                        <td>More...</td>                                         
+                    						</tr>
+                    						<tr>
+                                                <td>1</td>
+						                        <td>987654</td>
+						                        <td>21/12/2020</td>
+						                        <td>Health</td>
+						                        <td>Yes/No</td> 
+						                        <td>More...</td>                                         
+                    						</tr>
             							</tbody>
         							</table>
     							</div>
@@ -250,16 +292,6 @@
 			</div>
 		</div>
 		<!--************ Dashboard Ends ***********-->
-
-		<!--************ Footer Starts ***********-->
-		<footer>
-			<div class="footer-top">
-        		<div class="copyright">
-                	<span>This site is designed, developed & hosted by Students of Information Technology Department owned by School of Engineering,CUSAT</span>
-        		</div>
-    		</div>
-		</footer>
-		<!--************ Footer Ends ***********-->
 	</div>
 </body>
 </html>

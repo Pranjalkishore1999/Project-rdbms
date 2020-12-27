@@ -11,9 +11,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com"> 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -194,7 +191,7 @@
 			                <span class="pull-right text-primary"> Fields marked with <b class="text-danger">*</b> are mandatory. </span>
 			            </div>
 			        </div>
-			        <form action="/auth/banking" autocomplete="off" id="NewGrievanceV7" method="post" enctype="multipart/form-data>
+					<form action="/auth/banking" autocomplete="off" id="NewGrievanceV7" method="post" enctype ="multipart/form-data">
 			        	<div class="form-horizontal">
 			                <div class="form-group">
 			                    <div class="row">
@@ -228,7 +225,7 @@
 			                    <div class="row">
 			                        <label class="col-md-4 text-right required" for="Category"><b>Name and Branch Name of Bank</b><b class="text-danger">*</b></label>
 			                        <div class="col-md-6">
-			                            <input type="text" name="bankname" autocomplete="off" id="BankName" class="form-control text-box single-line">
+			                            <input type="text" name="bankname" autocomplete="off" id="BankName" class="form-control text-box single-line" />
                             			<span class="field-validation-valid text-danger"></span>
                         			</div>
                     			</div>
@@ -246,7 +243,7 @@
                 						<span class="text-dark">
                 						<strong>Only special characters  , . - _ ( ) / : &amp; @  # $ % &amp; * ? + = ! ' "  are allowed in grievance description.</strong>
                 						</span>
-                						<textarea autocomplete="off" class="form-control" cols="50" id="Remarks" maxlength="1000" name="remarks" placeholder="Please Enter Text of Grievance (Remarks)" required="required" rows="5"></textarea>
+                						 <textarea autocomplete="off" class="form-control" cols="50" id="Remarks" maxlength="1000" name="remarks" placeholder="Please Enter Text of Grievance (Remarks)" required="required" rows="5"></textarea>
                 					</div>
                 					
                 				</div>
@@ -260,20 +257,22 @@
                 						<span class="text-info">Only PDF file upto 4MB is allowed.
                 						</span>
                 					</div>
-                					<div class="col-md-4"><input type="file" name="image" id="fileUpload">
+                					<div class="col-md-4"><input type="file" name="image" id="fileUpload" />
                 					</div>
                 				</div>
                 			</div>
                 			<div class="form-group">
         						<div class="offset-4 col-md-6">
-            						<button type="button" id="btnSubmit" class="btn btn-social btn-primary">
+            						<button type="submit" id="btnSubmit" class="btn btn-social btn-primary">
                 						<i class="fa fa-arrow-circle-right"></i> Submit
             						</button>
         						</div>
     						</div>
                         </div>
-                        </form>
-</form>
+						</form>
+						<% if(message){%>
+							<h4 class="alert alert-danger mt-4"><%=message%></h4>
+												 <%}%>
 </div>
 </div>
 </main>

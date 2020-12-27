@@ -4,7 +4,7 @@ const path= require('path');
 const mysql=require("mysql");
 const dotenv=require('dotenv');
 const cookieParser = require('cookie-parser');
-
+const multer = require('multer');
 dotenv.config({ path: './.env'});
 
 const app= express();
@@ -23,7 +23,7 @@ app.use(session({
 }));
 const publicDirectory = path.join(__dirname,'./public');
 app.use(express.static(publicDirectory));
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use('uploads', express.static(path.join(__dirname, './uploads')));
 
 //parse url -encoded bodies sent by html forms
 app.use(express.urlencoded({ extended: false}));

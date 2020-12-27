@@ -2,6 +2,21 @@ const express = require('express');
 var session = require('express-session');
 const authController = require('..//controllers/auth'); 
 const  router = express.Router();
+const path=require('path');
+const bodyparser=require('body-parser');
+const multer=require('multer');
+const mysql=require("mysql");
+
+
+const db = mysql.createConnection({
+    host:  process.env.DATABASE_HOST,
+    user:  process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE
+});
+
+
+
 
 router.post('/register',authController.register);
 
@@ -12,7 +27,46 @@ router.post('/resend',authController.resend);
 router.post('/verify',authController.verify);
 router.post('/changepassword',authController.changepassword);
 router.post('/updateprofile',authController.updateprofile);
-router.post('/banking',authController.banking);
+const uploadImg = require("..//multer");
+router.post('/banking',uploadImg().single('image'),function(req,res)
+{
+
+
+    console.log(req.body);
+        console.log(req.file);
+        console.log(req.body.Category2);
+
+    const filetypes= /pdf/;
+        const extname= filetypes.test(path.extname(req.file.originalname).toLowerCase());
+        const mimetype=filetypes.test(req.file.mimetype);
+        if(mimetype && extname)
+        {
+            const dep='banking';
+            const catogery=req.body.Category2;
+            const bn=req.body.bankname;
+            const gr=req.body.remarks;
+            const pt=req.file.path;
+            
+            db.query('INSERT INTO banking SET ?', {id:req.session.id,dep:dep,catogery:catogery,bank_name:bn,grievance:gr,document:pt},(error,result)=>{
+                if(error)
+                {
+                console.log(error);
+               }
+               else{
+                   console.log(result);
+                   res.render("successfullreg.ejs",{message: 'File uploaded successfully'});
+
+               }
+            });
+            
+        }
+            else{
+                res.render("banking.ejs",{message: 'only pdfs'});
+            }
+       // console.log(uploadImg.storage.filename);
+        
+    
+});
 
 
 
