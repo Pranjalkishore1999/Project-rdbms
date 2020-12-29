@@ -136,18 +136,18 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="./organisation.html">
+									<a class="nav-link"href="/auth/organisation">
 										<i class="fa fa-plus-square"></i><button type="submit">Lodge Public Grievance</button>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="./edit_profile.html">
+									<a class="nav-link"href="/auth/updateprofile">
 										<i class="fa fa-edit"></i><button type="submit">Edit Profile</button>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="./change_password.html">
-										<i class="fa fa-lock"></i><button type="submit">Change Password</button>
+									<a class="nav-link"href="">
+										<i class="fa fa-lock"></i><form action="/auth/send" method="POST"><button>Change Password</button></form>
 									</a>
 								</li>
 								<li class="nav-item">
@@ -156,7 +156,8 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-warning" href=""><strong><i class="fa fa-power-off"></i><button type="submit">Sign out</button></strong>
+									<a class="nav-link text-warning" href=""><form action=" /auth/logout" method="POST"><i class="fa fa-power-off"><button><strong></i>Sign out</button></strong>
+									</form>
 									</a>
 								</li>
 							</ul>
@@ -172,7 +173,7 @@
 												<img src="/griev_reg.png" width="75px" alt="user">
 											</div>
 											<div class="box-title">
-												<h3>0</h3>
+												<h3><%=(results1.length+results2.length+results3.length+results4.length)%></h3>
 											</div>
 										</div>
 										<div class="card-footer">
@@ -191,7 +192,7 @@
 												<img src="/griev_total.png" width="75px" alt="user">
 											</div>
 											<div class="box-title">
-												<h3>0</h3>
+												<h3><%=(results1.length+results2.length+results3.length+results4.length-count)%></h3>
 											</div>
 										</div>
 										<div class="card-footer">
@@ -210,7 +211,7 @@
 												<img src="/griev_closed.png"width="75px" alt="user">
 											</div>
 											<div class="box-title">
-												<h3>0</h3>
+												<h3><%=count%></h3>
 											</div>
 										</div>
 										<div class="card-footer">
@@ -239,48 +240,51 @@
             							</tr>
             							</thead>
             							<tbody>
-											<% data.forEach( function( items ) {  %>
+											<% results1.forEach( function( items ) {  %>
             								<tr>
-                                                <td>1</td>
-						                        <td>items.regno</td>
-						                        <td>items.date</td>
-						                        <td>items.grievance/td>
-						                        <td>items.status</td>    
+                                                <td><%=++c%></td>
+						                        <td><%=items.regno%></td>
+						                        <td><%=items.date%></td>
+						                        <td><%=items.grievance%></td>
+						                        <td><%=items.status%></td>    
 						                        <td>More...</td>                                      
 											</tr>
 										<% }) %>
-                    						<tr>
-                                                <td>1</td>
-						                        <td>987654</td>
-						                        <td>21/12/2020</td>
-						                        <td>Health</td>
-						                        <td>Yes/No</td> 
-						                        <td>More...</td>                                         
-                    						</tr>
-                    						<tr>
-                                                <td>1</td>
-						                        <td>987654</td>
-						                        <td>21/12/2020</td>
-						                        <td>Health</td>
-						                        <td>Yes/No</td> 
-						                        <td>More...</td>                                         
-                    						</tr>
-                    						<tr>
-                                                <td>1</td>
-						                        <td>987654</td>
-						                        <td>21/12/2020</td>
-						                        <td>Health</td>
-						                        <td>Yes/No</td> 
-						                        <td>More...</td>                                         
-                    						</tr>
-                    						<tr>
-                                                <td>1</td>
-						                        <td>987654</td>
-						                        <td>21/12/2020</td>
-						                        <td>Health</td>
-						                        <td>Yes/No</td> 
-						                        <td>More...</td>                                         
-                    						</tr>
+
+
+										<% results2.forEach( function( items ) {  %>
+            								<tr>
+                                                <td><%=++c%></td>
+						                        <td><%=items.regno%></td>
+						                        <td><%=items.date%></td>
+						                        <td><%=items.grievance%></td>
+						                        <td><%=items.status%></td>    
+						                        <td>More...</td>                                      
+											</tr>
+										<% }) %>
+
+										<% results3.forEach( function( items ) {  %>
+            								<tr>
+                                                <td><%=++c%></td>
+						                        <td><%=items.regno%></td>
+						                        <td><%=items.date%></td>
+						                        <td><%=items.grievance%></td>
+						                        <td><%=items.status%></td>    
+						                        <td>More...</td>                                      
+											</tr>
+										<% }) %>
+
+										<% results4.forEach( function( items ) {  %>
+            								<tr>
+                                                <td><%=++c%></td>
+						                        <td><%=items.regno%></td>
+						                        <td><%=items.date%></td>
+						                        <td><%=items.grievance%></td>
+						                        <td><%=items.status%></td>    
+						                        <td>More...</td>                                      
+											</tr>
+										<% }) %>
+                    						
             							</tbody>
         							</table>
     							</div>

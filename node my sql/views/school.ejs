@@ -194,7 +194,7 @@
 			                <span class="pull-right text-primary"> Fields marked with <b class="text-danger">*</b> are mandatory. </span>
 			            </div>
 			        </div>
-			        <form action="" autocomplete="off" id="NewGrievanceV7" method="post">
+			        <form action="/auth/school" autocomplete="off" id="NewGrievanceV7" method="post" enctype="multipart/form-data">
 			        	<div class="form-horizontal">
 			                <div class="form-group">
 			                    <div class="row">
@@ -256,13 +256,13 @@
                 						<span class="text-info">Only PDF file upto 4MB is allowed.
                 						</span>
                 					</div>
-                					<div class="col-md-4"><input type="file" name="fileUpload" id="fileUpload">
+                					<div class="col-md-4"><input type="file" name="image" id="fileUpload">
                 					</div>
                 				</div>
                 			</div>
                 			<div class="form-group">
         						<div class="offset-4 col-md-6">
-            						<button type="button" id="btnSubmit" class="btn btn-social btn-primary">
+            						<button type="submit" id="btnSubmit" class="btn btn-social btn-primary">
                 						<i class="fa fa-arrow-circle-right"></i> Submit
             						</button>
         						</div>

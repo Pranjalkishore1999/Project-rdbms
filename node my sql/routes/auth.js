@@ -46,8 +46,21 @@ router.post('/banking',uploadImg().single('image'),function(req,res)
             const bn=req.body.bankname;
             const gr=req.body.remarks;
             const pt=req.file.path;
-            
-            db.query('INSERT INTO banking SET ?', {id:req.session.id,dep:dep,catogery:catogery,bank_name:bn,grievance:gr,document:pt},(error,result)=>{
+            const id1=req.session.id1;
+            const reg= Date.now() + Math.random();
+            let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+var cdate= (year + "-" + month + "-" + date);
+            db.query('INSERT INTO banking SET ?', {id:req.session.id1,date:cdate,reg_no:reg,dep:dep,catogery:catogery,bank_name:bn,grievance:gr,document:pt},(error,result)=>{
                 if(error)
                 {
                 console.log(error);
@@ -67,6 +80,62 @@ router.post('/banking',uploadImg().single('image'),function(req,res)
         
     
 });
+
+
+//for education
+router.post('/school',uploadImg().single('image'),function(req,res)
+{
+
+
+    console.log(req.body);
+        console.log(req.file);
+        //console.log(req.body.Category2);
+
+    const filetypes= /pdf/;
+        const extname= filetypes.test(path.extname(req.file.originalname).toLowerCase());
+        const mimetype=filetypes.test(req.file.mimetype);
+        if(mimetype && extname)
+        {
+            const dep='education';
+            const catogery=req.body.Category;
+            const bn=req.body.SchoolName;
+            const gr=req.body.Remarks;
+            const pt=req.file.path;
+            const id1=req.session.id1;
+            const reg= Date.now() + Math.random();
+            let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+var cdate= (year + "-" + month + "-" + date);
+            db.query('INSERT INTO education SET ?', {id:req.session.id1,date:cdate,reg_no:reg,dep:dep,catogery2:catogery,school_name:bn,grievance:gr,document:pt},(error,result)=>{
+                if(error)
+                {
+                console.log(error);
+               }
+               else{
+                   console.log(result);
+                   res.render("successfullreg.ejs",{message: 'File uploaded successfully'});
+
+               }
+            });
+            
+        }
+            else{
+                res.render("school.ejs",{message: 'only pdfs'});
+            }
+       // console.log(uploadImg.storage.filename);
+        
+    
+});
+
 
 
 

@@ -57,30 +57,42 @@ const db = mysql.createConnection({
 exports.login = async (req,res) =>{
 try{
    const {email,password} =req.body;
-   if(!email|| !password)
+   console.log(req.body);
+   if(!email||!password)
    {
        return res.status(400).render('login',{
            message : 'Please Provide An Email And Password'
        })
    }
-   db.query('SELECT * FROM users WHERE email =?',[email],async(error,results) =>{
-       console.log(results);
-        if(!(results)  || !(await bcrypt.compare(password, results[0].password)))
+   db.query('SELECT * FROM users WHERE email =?',[email],async(error,resultsu) =>{
+       try {
+       //console.log(resultsu);
+        if(!(resultsu.length>0)) 
+        {
+         return res.status(401).render('login',{
+            message : 'Email Or Password Is Incorrect'
+        })
+     }
+
+     else if(!(await bcrypt.compare(password, resultsu[0].password)))
         {
         res.status(401).render('login',{
             message : 'Email Or Password Is Incorrect'
         })
      }
+
      else{
+         var count =0;
         req.session.loggedin = true;
-        req.session.name = results[0].name;
-        req.session.email = results[0].email;
-        req.session.sex=results[0].sex;
-        req.session.district=results[0].district;
-        req.session.state=results[0].state;
-        req.session.mobileno=results[0].mobile_no;
-         const id =results[0].id;
-         req.session.id=results[0].id;
+        req.session.name = resultsu[0].name;
+        req.session.email = resultsu[0].email;
+        req.session.sex=resultsu[0].sex;
+        req.session.district=resultsu[0].district;
+        req.session.state=resultsu[0].state;
+        req.session.mobileno=resultsu[0].mobile;
+         const id =resultsu[0].id;
+         req.session.id1=resultsu[0].id;
+         console.log(req.session.id1);
  
          const token = jwt.sign({ id },process.env.JWT_SECRET,{
            expiresIn: process.env.JWT_EXPIRES_IN  
@@ -94,23 +106,179 @@ try{
           ),
          httpOnly:true
       }
-      var user = { name:results[0].name, email: results[0].email};
+      var user = { name:resultsu[0].name, email: resultsu[0].email};
        res.cookie('jwt',token,cookieOptions);
-       db.query('SELECT * FROM banking WHERE id =?',[req.session.id],async(error,results) =>{
+       var sta;
+       
+       //console.log(req.session);
+
+       //query for banking
+       var results1= new Array();
+       db.query('SELECT * FROM banking WHERE id =?',[id],async(error,results) =>{
            if(error)
            {
                console.log(error)
            }
            else
            {
+               //console.log(results);
                (results).forEach(ele=> {
-                   
-               });
+                var obj=new Object();
+                   if(ele.status)
+                   {
+                   ele.status='accepted';
+                   obj.status='rectified and closed';
+                   count++;
+                   }
+                   else
+                   {
+                   ele.status='rejected';
+                   obj.status='pending';
+                   }
+                   obj.date=ele.date;
+                   obj.regno=ele.reg_no;
+                   obj.doc=ele.document;
+                   obj.grievance=ele.grievance;
+                   obj.catogery=ele.catogery;
+                   obj.name=ele.bank_name;
+                   results1.push(obj);
+                })
+                //console.log(results1);
+                
+        }
+       
+    
+ });
+ 
+
+ //query for education
+ var results2= new Array();
+       db.query('SELECT * FROM education WHERE id =?',[id],async(error,results) =>{
+           if(error)
+           {
+               console.log(error)
            }
-       })
-       res.status(200).render("dashboard.ejs",{user:user});
+           else
+           {
+               console.log(results);
+               (results).forEach(ele=> {
+                var obj2=new Object();
+                   if(ele.status)
+                   {
+                   ele.status='accepted';
+                   obj2.status='rectified and closed';
+                   count++;
+                   }
+                   else
+                   {
+                   ele.status='rejected';
+                   obj2.status='pending';
+                   }
+                   obj2.date=ele.date;
+                   obj2.regno=ele.reg_no;
+                   obj2.doc=ele.document;
+                   obj2.grievance=ele.grievance;
+                   obj2.catogery=ele.catogery2;
+                   obj2.name=ele.school_name;
+                   results2.push(obj2);
+                })
+               // console.log(results2);
+        }
+
+ });
+
+ //query for health
+
+ var results3= new Array();
+       db.query('SELECT * FROM health WHERE id =?',[id],async(error,results) =>{
+           if(error)
+           {
+               console.log(error)
+           }
+           else
+           {
+               console.log(results);
+               (results).forEach(ele=> {
+                var obj3=new Object();
+                   if(ele.status)
+                   {
+                   ele.status='accepted';
+                   obj3.status='rectified and closed';
+                   count++;
+                   }
+                   else
+                   {
+                   ele.status='rejected';
+                   obj3.status='pending';
+                   }
+                   obj3.date=ele.date;
+                   obj3.regno=ele.reg_no;
+                   obj3.doc=ele.document;
+                   obj3.grievance=ele.grievance;
+                   obj3.catogery=ele.catogery4;
+                   obj3.name=ele.hospital_name;
+                   results3.push(obj3);
+                })
+               // console.log(results3);
+        }
+
+ });
+
+//query for road transport
+var results4= new Array();
+       db.query('SELECT * FROM road_transport WHERE id =?',[id],async(error,results) =>{
+           if(error)
+           {
+               console.log(error)
+           }
+           else
+           {
+               console.log(results);
+               (results).forEach(ele=> {
+                var obj4=new Object();
+                   if(ele.status)
+                   {
+                   ele.status='accepted';
+                   obj4.status='rectified and closed';
+                   count++;
+                   }
+                   else
+                   {
+                   ele.status='rejected';
+                   obj4.status='pending';
+                   }
+                   obj4.date=ele.date;
+                   obj4.regno=ele.reg_no;
+                   obj4.doc=ele.document;
+                   obj4.grievance=ele.grievance;
+                   obj4.catogery=ele.catogery3;
+                   obj4.name=ele.state;
+                   results4.push(obj4);
+                })
+               // console.log(results4);
+        }
+        console.log(results1.length);
+        console.log(results2.length);
+        console.log(results3.length);
+        console.log(results4.length);
+        var c=0;
+        res.status(200).render("dashboard.ejs",{user:user,results1:results1,results2:results2,results3:results3,results4:results4,count:count,c:c});
+       
+
+ });
+
+
+ //console.log("here we go");
+ 
+ 
+ //res.status(200).render("dashboard.ejs",{user:user,results1:results1,results2:results2,results3:results3,results4:results4,count:count});
+       
      }
-    })
+    }
+    catch(error){
+        console.log(error);
+    }
+    });
  
  }catch(error) {
      console.log(error);
