@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Organisation</title>
+	<title>Loan Status</title>
 	<title>Welcome to CPGRAMS</title>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,7 +81,7 @@
 		<div class="main-navbar bg-dark">
 			<div class="container-fluid">
 				<nav class="navbar navbar-expand-md navbar-dark d-flex justify-content-between">
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+					<button type="submit" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 						<span class="navbar-toggle-icon">
 						</span>
 					</button>
@@ -106,7 +106,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 									<a class="dropdown-item"href="./organisation.html"><button type="submit">Lodge Personnel Grievance</button></a>
 									<a class="dropdown-item" href="./organisation.html"><button type="submit">Lodge Public Grievance</button></a>
-									 <a class="dropdown-item" href=""><button type="submit">View Status</button></a>
+									 <a class="dropdown-item" href="">View Status</a>
 								</div>
 							</li>
 							<li class="nav-item">
@@ -132,27 +132,17 @@
 							<ul class="nav flex-column">
 								<li class="nav-item">
 									<a class="nav-link active"href="/auth/returndashboard">
-										<i class="fa fa-dashboard"></i><button type="submit" style="color: black">Dashboard</button><span class="sr-only">(current)</span>
+										<i class="fa fa-dashboard"></i><button type="submit" style="color: black">Return to Dashboard</button><span class="sr-only">(current)</span>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="/auth/organisation">
-										<i class="fa fa-plus-square"></i><button type="submit">Lodge Public Grievance</button>
+									<a class="nav-link" href="/auth/loanapply">
+										<i class="fa fa-plus-square"></i><button type="submit">Apply for Loan</button>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="/auth/updateprofile">
-										<i class="fa fa-edit"></i><button type="submit">Edit Profile</button>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link"href="">
-										<i class="fa fa-lock"></i><form action="/auth/send" method="POST"><button>Change Password</button></form>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link"href="/auth/loan">
-										<i class="fa fa-inr"></i><button type="submit">Loan Status</button>
+									<a class="nav-link"href="/auth/checkloanstatus">
+										<i class="fa fa-edit"></i><button type="submit">Check Loan Status</button>
 									</a>
 								</li>
 								<li class="nav-item">
@@ -163,105 +153,54 @@
 							</ul>
 						</div>
 					</nav>
-					<!--*********** Dashboard Ends ***************-->
-					<!--*********** Ministry Starts ***********-->
-					<main role="main" class="col">
-						<style type="text/css">
-							.lodgeBox{
-								min-height: 220px;
-								margin-bottom: 15px;
-							}
-						</style>
-						<div class="card card-info">
-							<div class="card-header"style="background-color: #037afb">
-								<h4 style="color: white">Please select a Ministry</h4>
+		<!--*************** Logo Bar Ends ***************-->
+
+		<main role="main" class="col">
+            							<div class="card card-info">
+    							<div class="card-header" style="background-color: #48a3b8">
+        							<h4 class="card-title">Loan Applied</h4>
+    							</div>
+    							<div class="card-body">
+    								<form method="POST" action="">
+       								<table id="TblGrievance" class="table table-striped table-bordered" style="width: 100%">
+            							<thead>
+            							<tr class="bg-secondary">
+                							<th>Sn.</th>
+                							<th>Registration Number</th>
+                							<th>Received Date</th>
+                							<th>Loan type</th>
+                							<th>Status</th>
+                							<th>Loan description</th>
+            							</tr>
+            							</thead>
+            							<tbody>
+            								<% results1.forEach( function( items ) {  %>
+												<tr>
+													<td><%=++c%></td>
+													<td><%=items.regno%></td>
+													<td><%=items.date%></td>
+													<td><%=items.catogery%></td>
+													<td><%=items.status%></td>    
+													<td>More...</td>                                      
+												</tr>
+											<% }) %>
+            							</tbody>
+        							</table>
+        							</form>
+    							</div>
 							</div>
-							<div class="card-body">
-								<div class="row justify-content-center">
-									<div class="col-lg-2 col-md-3 col-sm-6 lodgeMain">
-										<a href="/auth/banking">
-											<div class="grievCont lodgeBox">
-												<div class="orgTitle">
-													<span>Banking<br/>(Financial Services)</span>
-												</div>
-												<div class="boxGriev d-flex lodgeGriev">
-													<div class="box-title">
-														<img src="/deabd.png">
-													</div>
-												</div>
-
-												
-											</div>
-										</a>
-										
-									</div>
-									<div class="col-lg-2 col-md-3 col-sm-6 lodgeMain">
-										<a href="/auth/school">
-											<div class="grievCont lodgeBox">
-												<div class="orgTitle">
-													<span>Education & Literacy</span>
-												</div>
-												<div class="boxGriev d-flex lodgeGriev">
-													<div class="box-title">
-														<img src="/dosel.png">
-													</div>
-												</div>
-
-												
-											</div>
-										</a>
-										
-									</div>
-									<div class="col-lg-2 col-md-3 col-sm-6 lodgeMain">
-										<a href="/auth/road">
-											<div class="grievCont lodgeBox">
-												<div class="orgTitle">
-													<span>Road Transport & Highways</span>
-												</div>
-												<div class="boxGriev d-flex lodgeGriev">
-													<div class="box-title">
-														<img src="/morth.png">
-													</div>
-												</div>
-
-												
-											</div>
-										</a>
-										
-									</div>
-									<div class="col-lg-2 col-md-3 col-sm-6 lodgeMain">
-										<a href="/auth/health">
-											<div class="grievCont lodgeBox">
-												<div class="orgTitle">
-													<span>Health & Family Welfare</span>
-												</div>
-												<div class="boxGriev d-flex lodgeGriev">
-													<div class="box-title">
-														<img src="/dhlth.png">
-													</div>
-												</div>			
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</main>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--************ Ministry Ends ***********-->
-
-    <!--************ Footer Starts ***********-->
-    <footer>
+    </main>
+</div>
+</div>
+</div>
+</div>
+<footer>
       <div class="footer-top">
             <div class="copyright">
                   <span>This site is designed, developed & hosted by Students of Information Technology Department owned by School of Engineering,CUSAT</span>
             </div>
         </div>
     </footer>
-    <!--************ Footer Ends ***********-->
-  </div>
+</div>
 </body>
 </html>

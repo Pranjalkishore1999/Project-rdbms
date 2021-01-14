@@ -53,6 +53,443 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+//loan status update
+exports.updateloanstatus = (req,res) =>{
+    var iv=req.body.vote;
+    var regno=req.body.regno;
+    console.log(req.body);
+    db.query('SELECT * FROM loan WHERE reg_no =?',[regno],async(error,results) =>{
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            if(iv=='accepted')
+            {
+                var sql = "UPDATE loan SET status=? WHERE reg_no =?";
+    let data=[1,regno];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersloanupdate.ejs',{
+          message :'Data updated successfully'});
+            }
+
+            
+        });
+  }
+
+  if(iv=='rejected')
+            {
+                var sql = "UPDATE banking SET status=? WHERE reg_no =?";
+                let data=[1,regno];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersloanupdate.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+  }
+}
+
+
+    });
+}
+//grievance approval
+exports.updatestatus = (req,res) =>{
+    var iv=req.body.vote;
+    var regno=req.body.regno;
+    console.log(req.body);
+  if(req.body.type=='banking')
+  {
+    db.query('SELECT * FROM banking WHERE reg_no =?',[regno],async(error,results) =>{
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            if(iv=='accepted')
+            {
+                var sql = "UPDATE banking SET status=? WHERE reg_no =?";
+    let data=[1,regno];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersdashboard.ejs',{
+          message :'Data updated successfully'});
+            }
+
+            
+        });
+  }
+
+  if(iv=='rejected')
+            {
+                var sql = "UPDATE banking SET status=? WHERE reg_no =?";
+                let data=[1,regno];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersdashboard.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+  }
+}
+
+
+    });
+}
+
+
+if(req.body.type=='heath')
+  {
+    db.query('SELECT * FROM health WHERE regno =?',[regno],async(error,results) =>{
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            if(iv=='accepted')
+            {
+                var sql = "UPDATE health SET status=?";
+    let data=[1];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersdashboard.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+  }
+
+  if(iv=='rejected')
+            {
+                var sql = "UPDATE health SET status=?";
+    let data=[0];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersupdaterecord.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+    }
+  }
+  
+  
+      });
+  }
+
+if(req.body.type=='education')
+  {
+    db.query('SELECT * FROM education WHERE regno =?',[regno],async(error,results) =>{
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            if(iv=='accepted')
+            {
+                var sql = "UPDATE education SET status=?";
+    let data=[1];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersupdaterecord.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+  }
+
+  if(iv=='rejected')
+            {
+                var sql = "UPDATE education SET status=?";
+    let data=[0];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersupdaterecord.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+    }
+  }
+  
+  
+      });
+  }
+
+if(req.body.type=='road_transport')
+  {
+    db.query('SELECT * FROM banking WHERE regno =?',[regno],async(error,results) =>{
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            if(iv=='accepted')
+            {
+                var sql = "UPDATE road_transport SET status=?";
+    let data=[1];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersupdaterecord.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+  }
+
+  if(iv=='rejected')
+            {
+                var sql = "UPDATE road_transport SET status=?";
+    let data=[0];
+    db.query(sql,data, (err, result)=>{
+        if (err) throw err;
+        else{
+        console.log(result.affectedRows + " record(s) updated");
+        return res.render('officersupdaterecord.ejs',{
+          message :'Data updated successfully'});
+            }
+
+        });
+    }
+  }
+  
+  
+      });
+  }
+
+
+}
+//officers login page k liye
+exports.officerslogin = async (req,res) =>{
+    try{
+       const {email,password} =req.body;
+       console.log(req.body);
+       if(!email||!password)
+       {
+           return res.status(400).render('officerslogin',{
+               message : 'Please Provide An Email And Password'
+           })
+       }
+       else
+       {
+       db.query('SELECT * FROM officer WHERE email =?',[email],async(error,resultsu) =>{
+           try {
+           //console.log(resultsu);
+            if(!(resultsu.length>0)) 
+            {
+             return res.status(401).render('officerslogin',{
+                message : 'Email Or Password Is Incorrect'
+            })
+         }
+    
+         else if(!(await bcrypt.compare(password, resultsu[0].password)))
+            {
+            res.status(401).render('officerslogin',{
+                message : 'Email Or Password Is Incorrect'
+            })
+         }
+    
+         else{
+
+            var results1= new Array();
+            db.query('SELECT * FROM banking' ,async(error,results) =>{
+                if(error)
+                {
+                    console.log(error)
+                }
+                else
+                {
+                    //console.log(results);
+                    (results).forEach(ele=> {
+                     var obj=new Object();
+                        if(ele.status)
+                        {
+                        ele.status='accepted';
+                        obj.status='rectified and closed';
+                        count++;
+                        }
+                        else
+                        {
+                        ele.status='rejected';
+                        obj.status='pending';
+                        }
+                        obj.date=ele.date;
+                        obj.regno=ele.reg_no;
+                        obj.doc=ele.document;
+                        obj.grievance=ele.grievance;
+                        obj.catogery=ele.catogery;
+                        obj.name=ele.bank_name;
+                        results1.push(obj);
+                     })
+                     //console.log(results1);
+                     
+             }
+            
+         
+      });
+      
+     
+      //query for education
+      var results2= new Array();
+            db.query('SELECT * FROM education' ,async(error,results) =>{
+                if(error)
+                {
+                    console.log(error)
+                }
+                else
+                {
+                    console.log(results);
+                    (results).forEach(ele=> {
+                     var obj2=new Object();
+                        if(ele.status)
+                        {
+                        ele.status='accepted';
+                        obj2.status='rectified and closed';
+                        count++;
+                        }
+                        else
+                        {
+                        ele.status='rejected';
+                        obj2.status='pending';
+                        }
+                        obj2.date=ele.date;
+                        obj2.regno=ele.reg_no;
+                        obj2.doc=ele.document;
+                        obj2.grievance=ele.grievance;
+                        obj2.catogery=ele.catogery2;
+                        obj2.name=ele.school_name;
+                        results2.push(obj2);
+                     })
+                    // console.log(results2);
+             }
+     
+      });
+     
+      //query for health
+     
+      var results3= new Array();
+            db.query('SELECT * FROM health' ,async(error,results) =>{
+                if(error)
+                {
+                    console.log(error)
+                }
+                else
+                {
+                    console.log(results);
+                    (results).forEach(ele=> {
+                     var obj3=new Object();
+                        if(ele.status)
+                        {
+                        ele.status='accepted';
+                        obj3.status='rectified and closed';
+                        count++;
+                        }
+                        else
+                        {
+                        ele.status='rejected';
+                        obj3.status='pending';
+                        }
+                        obj3.date=ele.date;
+                        obj3.regno=ele.reg_no;
+                        obj3.doc=ele.document;
+                        obj3.grievance=ele.grievance;
+                        obj3.catogery=ele.catogery4;
+                        obj3.name=ele.hospital_name;
+                        results3.push(obj3);
+                     })
+                    // console.log(results3);
+             }
+     
+      });
+     
+     //query for road transport
+     var results4= new Array();
+            db.query('SELECT * FROM road_transport',async(error,results) =>{
+                if(error)
+                {
+                    console.log(error)
+                }
+                else
+                {
+                    console.log(results);
+                    (results).forEach(ele=> {
+                     var obj4=new Object();
+                        if(ele.status)
+                        {
+                        ele.status='accepted';
+                        obj4.status='rectified and closed';
+                        count++;
+                        }
+                        else
+                        {
+                        ele.status='rejected';
+                        obj4.status='pending';
+                        }
+                        obj4.date=ele.date;
+                        obj4.regno=ele.reg_no;
+                        obj4.doc=ele.document;
+                        obj4.grievance=ele.grievance;
+                        obj4.catogery=ele.catogery3;
+                        obj4.name=ele.state;
+                        results4.push(obj4);
+                     })
+                    // console.log(results4);
+             }
+             console.log(results1.length);
+             console.log(results2.length);
+             console.log(results3.length);
+             console.log(results4.length);
+             var c=0;
+             res.status(200).render("officersdashboard.ejs",{results1:results1,results2:results2,results3:results3,results4:results4,c:c});
+            
+     
+      });
+
+            //res.status(200).render("officersdashboard.ejs");
+       
+
+         }
+           }
+       
+    
+           catch(error){
+               console.log(error);
+           }
+           });
+        }
+        
+        }catch(error) {
+            console.log(error);
+        }
+        }
+       
+
 //login page ke liye
 exports.login = async (req,res) =>{
 try{
@@ -137,13 +574,14 @@ try{
                    }
                    obj.date=ele.date;
                    obj.regno=ele.reg_no;
-                   obj.doc=ele.document;
+                   obj.doc='./'+ele.document;
+                   console.log(obj.doc);
                    obj.grievance=ele.grievance;
                    obj.catogery=ele.catogery;
                    obj.name=ele.bank_name;
                    results1.push(obj);
                 })
-                //console.log(results1);
+                //console.log(results1);D:\project\node my sql\uploads\1609091874645receipt bbm payment.pdf
                 
         }
        
@@ -388,11 +826,6 @@ else{
  
 });
  }
-
- //reg grievance for banking
- 
-
-
  
 //register page ke liye   
 exports.register = (req,res) =>{

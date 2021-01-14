@@ -88,7 +88,7 @@
 					<div class="collapse navbar-collapse" id="collapsibleNavbar">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="/Status"><img src="/ico_view.png" alt=""><button type="submit">View Status</button><span class="sr-only">(current)</span></a>
+								<a class="nav-link" href="/auth/loan"><img src="/ico_view.png" alt=""><button type="submit">View Status</button><span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"data-toggle="dropdown"aria-expanded="false">
@@ -104,13 +104,13 @@
 									<img src="/ico_grievance.png" alt=""><button type="submit">Grievance</button>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-									<a class="dropdown-item"href="./organisation.html"><button type="submit">Lodge Personnel Grievance</button></a>
-									<a class="dropdown-item" href="./organisation.html"><button type="submit">Lodge Public Grievance</button></a>
-									 <a class="dropdown-item" href="">View Status</a>
+									<a class="dropdown-item"href="/auth/organisation"><button type="submit">Lodge Personnel Grievance</button></a>
+									<a class="dropdown-item" href="/auth/organisation"><button type="submit">Lodge Public Grievance</button></a>
+									 <a class="dropdown-item" href="/auth/loan">View Status</a>
 								</div>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link"href=""><i class="fa fa-bell" aria-hidden="true"></i><button type="submit">Notices</button><span class="sr-only">(current)</span></a>
+								<a class="nav-link"href="/auth/notice"><i class="fa fa-bell" aria-hidden="true"></i><button type="submit">Notices</button><span class="sr-only">(current)</span></a>
 							</li>
 						</ul>
 					</div>
@@ -131,7 +131,7 @@
 						<div class="sidebar-sticky">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link active"href="">
+									<a class="nav-link active"href="/auth/returndashboard">
 										<i class="fa fa-dashboard"></i><button type="submit" style="color: black">Dashboard</button><span class="sr-only">(current)</span>
 									</a>
 								</li>
@@ -151,7 +151,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="">
+									<a class="nav-link"href="/auth/loan">
 										<i class="fa fa-inr"></i><button type="submit">Loan Status</button>
 									</a>
 								</li>
@@ -247,7 +247,7 @@
 						                        <td><%=items.date%></td>
 						                        <td><%=items.grievance%></td>
 						                        <td><%=items.status%></td>    
-						                        <td>More...</td>                                      
+						                        <td><li class="list-group-item"><i class="fa fa-circle-o"></i><a target="_blank" href="<%=items.doc%>" download="document">document </a></li></td>                                      
 											</tr>
 										<% }) %>
 

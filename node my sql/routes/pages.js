@@ -15,6 +15,10 @@ router.get('/login',(req,res) =>{
     res.render('login');
 });
 
+router.get('/officerlogin',(req,res) =>{
+    res.render('officerslogin');
+});
+
 router.get('/contactus',(req,res) =>{
     res.render('contactus');
 

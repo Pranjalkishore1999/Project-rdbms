@@ -6,7 +6,7 @@
 	<title>Welcome to CPGRAMS</title>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
   <link rel="icon" type="image/x-icon" href="/logo.png">
 <link rel="preconnect" href="https://fonts.gstatic.com"> 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -131,33 +131,34 @@
 						<div class="sidebar-sticky">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link active"href="./dashboard.html">
-										<i class="fa fa-dashboard"></i>Dashboard<span class="sr-only">(current)</span>
+									<a class="nav-link active"href="/auth/returndashboard">
+										<i class="fa fa-dashboard"></i><button type="submit" style="color: black">Dashboard</button><span class="sr-only">(current)</span>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="./organisation.html">
-										<i class="fa fa-plus-square"></i>Lodge Public Grievance
+									<a class="nav-link"href="/auth/organisation">
+										<i class="fa fa-plus-square"></i><button type="submit">Lodge Public Grievance</button>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"href="./edit_profile.html">
-										<i class="fa fa-edit"></i>Edit Profile
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link"href="./change_password.html">
-										<i class="fa fa-lock"></i>Change Password
+									<a class="nav-link"href="/auth/updateprofile">
+										<i class="fa fa-edit"></i><button type="submit">Edit Profile</button>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link"href="">
-										<i class="fa fa-inr"></i>Loan Status
+										<i class="fa fa-lock"></i><form action="/auth/send" method="POST"><button>Change Password</button></form>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"href="/auth/loan">
+										<i class="fa fa-inr"></i><button type="submit">Loan Status</button>
 									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link text-warning" href=""><form action=" /auth/logout" method="POST"><i class="fa fa-power-off"><button><strong></i>Sign out</button></strong>
-									</form></a>
+									</form>
+									</a>
 								</li>
 							</ul>
 						</div>
