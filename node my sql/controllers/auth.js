@@ -122,7 +122,7 @@ exports.updatestatus = (req,res) =>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersdashboard.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -138,7 +138,7 @@ exports.updatestatus = (req,res) =>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersdashboard.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -151,9 +151,9 @@ exports.updatestatus = (req,res) =>{
 }
 
 
-if(req.body.type=='heath')
+if(req.body.type=='health')
   {
-    db.query('SELECT * FROM health WHERE regno =?',[regno],async(error,results) =>{
+    db.query('SELECT * FROM health WHERE reg_no =?',[regno],async(error,results) =>{
         if(error)
         {
             console.log(error)
@@ -162,13 +162,13 @@ if(req.body.type=='heath')
         {
             if(iv=='accepted')
             {
-                var sql = "UPDATE health SET status=?";
-    let data=[1];
+                var sql = "UPDATE health SET status=? WHERE reg_no =?";
+    let data=[1,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersdashboard.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -177,13 +177,13 @@ if(req.body.type=='heath')
 
   if(iv=='rejected')
             {
-                var sql = "UPDATE health SET status=?";
-    let data=[0];
+                var sql = "UPDATE health SET status=? WHERE reg_no =?";
+    let data=[0,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersupdaterecord.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -197,7 +197,7 @@ if(req.body.type=='heath')
 
 if(req.body.type=='education')
   {
-    db.query('SELECT * FROM education WHERE regno =?',[regno],async(error,results) =>{
+    db.query('SELECT * FROM education WHERE reg_no =?',[regno],async(error,results) =>{
         if(error)
         {
             console.log(error)
@@ -206,13 +206,13 @@ if(req.body.type=='education')
         {
             if(iv=='accepted')
             {
-                var sql = "UPDATE education SET status=?";
-    let data=[1];
+                var sql = "UPDATE education SET status=? WHERE reg_no =?";
+    let data=[1,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersupdaterecord.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -221,13 +221,13 @@ if(req.body.type=='education')
 
   if(iv=='rejected')
             {
-                var sql = "UPDATE education SET status=?";
-    let data=[0];
+                var sql = "UPDATE education SET status=? WHERE reg_no =?";
+    let data=[0,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersupdaterecord.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -241,7 +241,7 @@ if(req.body.type=='education')
 
 if(req.body.type=='road_transport')
   {
-    db.query('SELECT * FROM banking WHERE regno =?',[regno],async(error,results) =>{
+    db.query('SELECT * FROM banking WHERE reg_no =?',[regno],async(error,results) =>{
         if(error)
         {
             console.log(error)
@@ -250,13 +250,13 @@ if(req.body.type=='road_transport')
         {
             if(iv=='accepted')
             {
-                var sql = "UPDATE road_transport SET status=?";
-    let data=[1];
+                var sql = "UPDATE road_transport SET status=? WHERE reg_no =?";
+    let data=[1,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersupdaterecord.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -265,13 +265,13 @@ if(req.body.type=='road_transport')
 
   if(iv=='rejected')
             {
-                var sql = "UPDATE road_transport SET status=?";
-    let data=[0];
+                var sql = "UPDATE road_transport SET status=? WHERE reg_no =?";
+    let data=[0,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
         console.log(result.affectedRows + " record(s) updated");
-        return res.render('officersupdaterecord.ejs',{
+        return res.render('officersgreupdate.ejs',{
           message :'Data updated successfully'});
             }
 
@@ -317,6 +317,7 @@ exports.officerslogin = async (req,res) =>{
     
          else{
 
+            var count=0;
             var results1= new Array();
             db.query('SELECT * FROM banking' ,async(error,results) =>{
                 if(error)
@@ -574,7 +575,7 @@ try{
                    }
                    obj.date=ele.date;
                    obj.regno=ele.reg_no;
-                   obj.doc='./'+ele.document;
+                   obj.doc='../'+ele.document;
                    console.log(obj.doc);
                    obj.grievance=ele.grievance;
                    obj.catogery=ele.catogery;

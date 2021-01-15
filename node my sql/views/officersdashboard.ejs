@@ -31,31 +31,6 @@
 						</li>
 					</ul>
 				</div>
-				<div class="tophead_right">
-					<ul class="top_row flex-row">
-						<li>
-							<a href="grievance_dashboard.html" class="loginlinks">
-								<img src="/ico_home.png" alt="Home Image">
-								<span class="hidden-sm-down"><button type="submit">Home</button></span>
-							</a>
-						</li>
-						<li><a href="./contactus.html" class="loginlinks"><img src="/ico_contact.png" alt="Contact Us"><span class="hidden-sm-down"><button type="submit">Contact Us</button></span>
-						</a>
-					    </li>
-					    <li>
-					    	<a href="./aboutus.html" class="loginlinks">
-					    		<img src="/ico_about.png" alt="About Us">
-					    		<span class="hidden-sm-down"><button type="submit">About Us</button></span>
-						</a>
-					    </li>
-					     <li>
-					    	<a href="./faq.html" class="loginlinks faq">
-					    		<img src="/ico_help.png" alt="FAQ/Help">
-					    		<span class="hidden-sm-down"><button type="submit">FAQ/Help</button></span>
-						    </a>
-					    </li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<!--*************** Top Bar Ends ***************-->
@@ -95,7 +70,8 @@
 								</li>
 								
 								<li class="nav-item">
-									<a class="nav-link text-warning" href=""><strong><i class="fa fa-power-off"></i><button type="submit">Sign out</button></strong>
+									<a class="nav-link text-warning" href=""><form action="/auth/officerslogout" method="POST"><i class="fa fa-power-off"><button><strong></i>Sign out</button></strong>
+									</form>
 									</a>
 								</li>
 							</ul>
@@ -115,9 +91,10 @@
                 							<th>Sn.</th>
                 							<th>Registration Number</th>
                 							<th>Received Date</th>
-                							<th>Grievance type</th>
-                							<th>Status</th>
-                							<th>Grievance description</th>
+											<th>Grievance</th>
+											<th>status</th>
+                							<th>update</th>
+                							<th>File location</th>
             							</tr>
             							</thead>
             							<tbody>
@@ -127,72 +104,77 @@
                                                     <td><%=++c%></td>
                                                     <td><%=items.regno%></td>
                                                     <td><%=items.date%></td>
-                                                    <td><%=items.grievance%></td>
+													<td><%=items.grievance%></td>
+													<td><%=items.status%></td>
                                                     <td>
 														<form method="POST" action="/auth/updatestatus">
                                                         <input type="hidden" value="<%=items.regno%>" name="regno" />
                                                         <input type="hidden" value="banking" name="type" />
-                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-2">Accept</button>
-														<button type="submit" name="vote"  value="rejected" class="btn btn-danger">Reject</button>
+                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-1">Accept</button>
+														<button type="submit" name="vote"  value="rejected" class="btn btn-danger offset-1">Reject</button>
 													</form>
                                                     </td>    
                                                 
-                                                    <td><a href="./grievance_description.html">More...</a></td>     
+                                                    <td><%=items.doc%></td>     
                                                 </tr>
                                             <% }) %>
                                             <% results2.forEach( function( items ) {  %>
-                                                <form method="POST" action="/updatestatus">
+                                                
                                                 <tr>
                                                     <td><%=++c%></td>
                                                     <td><%=items.regno%></td>
                                                     <td><%=items.date%></td>
-                                                    <td><%=items.grievance%></td>
+													<td><%=items.grievance%></td>
+													<td><%=items.status%></td>
                                                     <td>
+														<form method="POST" action="/auth/updatestatus">
                                                         <input type="hidden" value="<%=items.regno%>" name="regno" />
-                                                        <input type="hidden" value="health" name="type" />
-                                                        <button type="button" name="vote"  value="accepted" class="btn btn-success mr-2 offset-2">Accept</button>
-                                                        <button type="button" name="vote"  value="rejected" class="btn btn-danger">Reject</button>
+                                                        <input type="hidden" value="education" name="type" />
+                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-1">Accept</button>
+                                                        <button type="submit" name="vote"  value="rejected" class="btn btn-danger offset-1">Reject</button>
                                                     </td>    
                                                 </form>
-                                                    <td><a href="./grievance_description.html">More...</a></td>     
+                                                    <td><%=items.doc%></td>     
                                                 </tr>
                                             <% }) %>
 
-                                            <% results3.forEach( function( items ) {  %>
+                                            <% results3.forEach( function(items) {  %>
                                                
                                                 <tr>
                                                     <td><%=++c%></td>
                                                     <td><%=items.regno%></td>
                                                     <td><%=items.date%></td>
-                                                    <td><%=items.grievance%></td>
+													<td><%=items.grievance%></td>
+													<td><%=items.status%></td>
                                                     <td>
 														<form method="POST" action="/auth/updatestatus">
                                                         <input type="hidden" value="<%=items.regno%>" name="regno" />
-                                                        <input type="hidden" value="education" name="type" />
-                                                        <button type="button" name="vote"  value="accepted" class="btn btn-success mr-2 offset-2">Accept</button>
-                                                        <button type="button" name="vote"  value="rejected" class="btn btn-danger">Reject</button>
+                                                        <input type="hidden" value="health" name="type" />
+                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-1">Accept</button>
+                                                        <button type="submit" name="vote"  value="rejected" class="btn btn-danger offset-1">Reject</button>
 													</form>
 													</td>    
                                                 
-                                                    <td><a href="./grievance_description.html">More...</a></td>     
+                                                    <td><%=items.doc%></td>     
                                                 </tr>
                                             <% }) %>
 
                                             <% results4.forEach( function( items ) {  %>
-                                                <form method="POST" action="/updatestatus">
                                                 <tr>
                                                     <td><%=++c%></td>
                                                     <td><%=items.regno%></td>
                                                     <td><%=items.date%></td>
-                                                    <td><%=items.grievance%></td>
+													<td><%=items.grievance%></td>
+													<td><%=items.status%></td>
                                                     <td>
+														<form method="POST" action="/auth/updatestatus">
                                                         <input type="hidden" value="<%=items.regno%>" name="regno" />
                                                         <input type="hidden" value="road_transport" name="type" />
-                                                        <button type="button" name="vote"  value="accepted" class="btn btn-success mr-2 offset-2">Accept</button>
-                                                        <button type="button" name="vote"  value="rejected" class="btn btn-danger">Reject</button>
+                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-1">Accept</button>
+                                                        <button type="submit" name="vote"  value="rejected" class="btn btn-danger offset-1">Reject</button>
                                                     </td>    
                                                 </form>
-                                                    <td><a href="./grievance_description.html">More...</a></td>     
+                                                    <td><%=items.doc%></td>     
                                                 </tr>
                                             <% }) %>
             

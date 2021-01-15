@@ -31,31 +31,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="tophead_right">
-					<ul class="top_row flex-row">
-						<li>
-							<a href="grievance_dashboard.html" class="loginlinks">
-								<img src="/ico_home.png" alt="Home Image">
-								<span class="hidden-sm-down"><button type="submit">Home</button></span>
-							</a>
-						</li>
-						<li><a href="./contactus.html" class="loginlinks"><img src="/ico_contact.png" alt="Contact Us"><span class="hidden-sm-down"><button type="submit">Contact Us</button></span>
-						</a>
-					    </li>
-					    <li>
-					    	<a href="./aboutus.html" class="loginlinks">
-					    		<img src="/ico_about.png" alt="About Us">
-					    		<span class="hidden-sm-down"><button type="submit">About Us</button></span>
-						</a>
-					    </li>
-					     <li>
-					    	<a href="/auth/faq" class="loginlinks faq">
-					    		<img src="/ico_help.png" alt="FAQ/Help">
-					    		<span class="hidden-sm-down"><button type="submit">FAQ/Help</button></span>
-						    </a>
-					    </li>
-					</ul>
-				</div>
+				
 			</div>
 		</div>
 		<!--*************** Top Bar Ends ***************-->
@@ -70,7 +46,7 @@
 						<div class="sidebar-sticky">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link active"href="#">
+									<a class="nav-link active"href="/auth/returnoffdashboard">
 										<i class="fa fa-dashboard"></i><button type="submit" style="color: black">Public Grievances</button><span class="sr-only">(current)</span>
 									</a>
 								</li>
@@ -81,7 +57,8 @@
 								</li>
 								
 								<li class="nav-item">
-									<a class="nav-link text-warning" href=""><strong><i class="fa fa-power-off"></i><button type="submit">Sign out</button></strong>
+									<a class="nav-link text-warning" href=""><form action=" /auth/officerslogout" method="POST"><i class="fa fa-power-off"><button><strong></i>Sign out</button></strong>
+									</form>
 									</a>
 								</li>
 							</ul>
@@ -91,7 +68,7 @@
 		<main role="main" class="col">
             							<div class="card card-info">
     							<div class="card-header" style="background-color: #48a3b8">
-        							<h4 class="card-title">List of Grievances</h4>
+        							<h4 class="card-title">List of Loans</h4>
     							</div>
     							<div class="card-body">
     	
@@ -108,6 +85,7 @@
             							</tr>
             							</thead>
             							<tbody>
+											<%c=0%>
                                             <% results1.forEach( function( items ) {  %>
                                                 
                                                 <tr>
@@ -120,12 +98,12 @@
 														<form method="POST" action="/auth/updateloanstatus">
                                                         <input type="hidden" value="<%=items.regno%>" name="regno" />
                                                         <input type="hidden" value="loan" name="type" />
-                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-2">Accept</button>
-														<button type="submit" name="vote"  value="rejected" class="btn btn-danger">Reject</button>
+                                                        <button type="submit" name="vote"  value="accepted" class="btn btn-success mr-2 offset-1">Accept</button>
+														<button type="submit" name="vote"  value="rejected" class="btn btn-danger offset-1">Reject</button>
 													</form>
                                                     </td>    
                                                 
-                                                    <td>More...</td>     
+                                                    <td><%=items.doc%></td>     
                                                 </tr>
                                             <% }) %>
                                     	</tbody>

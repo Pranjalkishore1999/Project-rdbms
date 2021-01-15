@@ -52,7 +52,7 @@ router.post('/banking',uploadImg().single('image'),function(req,res)
             const reg= Date.now() + Math.random();
             let date_ob = new Date();
 
-// current date
+// current date  D:\project\node my sql\uploads\1609091874645receipt bbm payment.pdf
 // adjust 0 before single digit date
 let date = ("0" + date_ob.getDate()).slice(-2);
 
@@ -170,7 +170,7 @@ let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 // current year
 let year = date_ob.getFullYear();
 var cdate= (year + "-" + month + "-" + date);
-            db.query('INSERT INTO road_transport SET ?', {id:req.session.id1,date:cdate,reg_no:reg,dep:dep,catogery2:catogery,state:bn,grievance:gr,document:pt},(error,result)=>{
+            db.query('INSERT INTO road_transport SET ?', {id:req.session.id1,date:cdate,reg_no:reg,dep:dep,catogery3:catogery,state:bn,grievance:gr,document:pt},(error,result)=>{
                 if(error)
                 {
                 console.log(error);
@@ -223,7 +223,7 @@ let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 // current year
 let year = date_ob.getFullYear();
 var cdate= (year + "-" + month + "-" + date);
-            db.query('INSERT INTO health SET ?', {id:req.session.id1,date:cdate,reg_no:reg,dep:dep,catogery2:catogery,school_name:bn,grievance:gr,document:pt},(error,result)=>{
+            db.query('INSERT INTO health SET ?', {id:req.session.id1,date:cdate,reg_no:reg,dep:dep,catogery4:catogery,hospital_name:bn,grievance:gr,document:pt},(error,result)=>{
                 if(error)
                 {
                 console.log(error);
@@ -315,7 +315,7 @@ router.get('/loan',(req,res) =>{
                    if(ele.status)
                    {
                    ele.status='accepted';
-                   obj.status='rectified and closed';
+                   obj.status='Sanctioned';
                   // count++;
                    }
                    else
@@ -368,7 +368,7 @@ router.get('/officersloandashboard',(req,res) =>{
                    if(ele.status)
                    {
                    ele.status='accepted';
-                   obj.status='rectified and closed';
+                   obj.status='Sanctioned';
                    count++;
                    }
                    else
@@ -457,6 +457,7 @@ router.get('/faq',(req,res) =>{
     res.render('faq');
 
 });
+
 
 router.get('/returndashboard', (req,res) => {
 
@@ -632,7 +633,6 @@ console.log(error);
 }
 
 
-
 });
 
 
@@ -683,7 +683,180 @@ router.get('/checkloanstatus',(req,res) =>{
 });
 
 
+router.get('/returnoffdashboard', (req,res) => {
 
+    //query for banking
+    id=req.session.id1;
+    var count=0;
+    try{
+        //console.log(id);
+        var results1= new Array();
+        db.query('SELECT * FROM banking' ,async(error,results) =>{
+            if(error)
+            {
+                console.log(error)
+            }
+            else
+            {
+                //console.log(results);
+                (results).forEach(ele=> {
+                 var obj=new Object();
+                    if(ele.status)
+                    {
+                    ele.status='accepted';
+                    obj.status='rectified and closed';
+                    count++;
+                    }
+                    else
+                    {
+                    ele.status='rejected';
+                    obj.status='pending';
+                    }
+                    obj.date=ele.date;
+                    obj.regno=ele.reg_no;
+                    obj.doc=ele.document;
+                    obj.grievance=ele.grievance;
+                    obj.catogery=ele.catogery;
+                    obj.name=ele.bank_name;
+                    results1.push(obj);
+                 })
+                 //console.log(results1);
+                 
+         }
+        
+     
+  });
+  
+ 
+  //query for education
+  var results2= new Array();
+        db.query('SELECT * FROM education' ,async(error,results) =>{
+            if(error)
+            {
+                console.log(error)
+            }
+            else
+            {
+                console.log(results);
+                (results).forEach(ele=> {
+                 var obj2=new Object();
+                    if(ele.status)
+                    {
+                    ele.status='accepted';
+                    obj2.status='rectified and closed';
+                    count++;
+                    }
+                    else
+                    {
+                    ele.status='rejected';
+                    obj2.status='pending';
+                    }
+                    obj2.date=ele.date;
+                    obj2.regno=ele.reg_no;
+                    obj2.doc=ele.document;
+                    obj2.grievance=ele.grievance;
+                    obj2.catogery=ele.catogery2;
+                    obj2.name=ele.school_name;
+                    results2.push(obj2);
+                 })
+                // console.log(results2);
+         }
+ 
+  });
+ 
+  //query for health
+ 
+  var results3= new Array();
+        db.query('SELECT * FROM health' ,async(error,results) =>{
+            if(error)
+            {
+                console.log(error)
+            }
+            else
+            {
+                console.log(results);
+                (results).forEach(ele=> {
+                 var obj3=new Object();
+                    if(ele.status)
+                    {
+                    ele.status='accepted';
+                    obj3.status='rectified and closed';
+                    count++;
+                    }
+                    else
+                    {
+                    ele.status='rejected';
+                    obj3.status='pending';
+                    }
+                    obj3.date=ele.date;
+                    obj3.regno=ele.reg_no;
+                    obj3.doc=ele.document;
+                    obj3.grievance=ele.grievance;
+                    obj3.catogery=ele.catogery4;
+                    obj3.name=ele.hospital_name;
+                    results3.push(obj3);
+                 })
+                // console.log(results3);
+         }
+ 
+  });
+ 
+ //query for road transport
+ var results4= new Array();
+        db.query('SELECT * FROM road_transport',async(error,results) =>{
+            if(error)
+            {
+                console.log(error)
+            }
+            else
+            {
+                console.log(results);
+                (results).forEach(ele=> {
+                 var obj4=new Object();
+                    if(ele.status)
+                    {
+                    ele.status='accepted';
+                    obj4.status='rectified and closed';
+                    count++;
+                    }
+                    else
+                    {
+                    ele.status='rejected';
+                    obj4.status='pending';
+                    }
+                    obj4.date=ele.date;
+                    obj4.regno=ele.reg_no;
+                    obj4.doc=ele.document;
+                    obj4.grievance=ele.grievance;
+                    obj4.catogery=ele.catogery3;
+                    obj4.name=ele.state;
+                    results4.push(obj4);
+                 })
+                // console.log(results4);
+         }
+         console.log(results1.length);
+         console.log(results2.length);
+         console.log(results3.length);
+         console.log(results4.length);
+         var c=0;
+         res.status(200).render("officersdashboard.ejs",{results1:results1,results2:results2,results3:results3,results4:results4,c:c});
+        
+ 
+  });
+
+        //res.status(200).render("officersdashboard.ejs");
+   
+
+       }
+   
+    catch(error) {
+    console.log(error);
+    }
+    
+    
+    });
+    
+    
 
 
 module.exports = router;

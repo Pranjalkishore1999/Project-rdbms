@@ -38,6 +38,10 @@ router.get('/faq',(req,res) =>{
     res.render('faq');
 
 });
+router.get('/noti',(req,res) =>{
+    res.render('notice1');
+
+});
 
 router.get('/process',(req,res) =>{
     res.render('process');
