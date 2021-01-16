@@ -442,13 +442,15 @@ router.get('/notice',(req,res) =>{
 router.post('/logout',(req,res) =>{
     console.log(req.session.name);
     req.session.destroy();
-    res.render('login',{ message :'You Are Logged out'})
+    //res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    //res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.redirect('/login')
 });
 
 router.post('/officerslogout',(req,res) =>{
     console.log(req.session.name);
     req.session.destroy();
-    res.render('login',{ message :'You Are Logged out'})
+    res.redirect('/login')
 });
 
 
