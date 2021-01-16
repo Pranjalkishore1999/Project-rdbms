@@ -133,7 +133,7 @@ exports.updatestatus = (req,res) =>{
   if(iv=='rejected')
             {
                 var sql = "UPDATE banking SET status=? WHERE reg_no =?";
-                let data=[1,regno];
+                let data=[0,regno];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{
@@ -241,7 +241,7 @@ if(req.body.type=='education')
 
 if(req.body.type=='road_transport')
   {
-    db.query('SELECT * FROM banking WHERE reg_no =?',[regno],async(error,results) =>{
+    db.query('SELECT * FROM road_transport WHERE reg_no =?',[regno],async(error,results) =>{
         if(error)
         {
             console.log(error)
@@ -814,8 +814,8 @@ else{
  exports.updateprofile=(req,res)=>{
     const{email,mobileno,district,state} = req.body;
     console.log(req.body); 
-    var sql = "UPDATE users SET email =?,mobile=?,district=?,state=? WHERE email = ?";
-    let data=[email,mobileno,district,state,req.session.email];
+    var sql = "UPDATE users SET mobile=?,district=?,state=? WHERE email = ?";
+    let data=[mobileno,district,state,req.session.email];
     db.query(sql,data, (err, result)=>{
         if (err) throw err;
         else{

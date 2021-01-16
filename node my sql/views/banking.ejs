@@ -173,14 +173,14 @@
 			                        <label class="col-md-4 text-right required" for="Category"><b>Select main category</b><b class="text-danger">*</b></label>
 			                        <div class="col-md-6">
 			                            <select autocomplete="off" class="form-control" id="Category_2" name="Category2"><option value="">Please select main category</option>
-											<option value="254">Education Loans Related </option>
-											<option value="255">Housing Loan Related</option>
-											<option value="256">Pradhan Mantri Jan Dhan Yojna (PMJDY) Related</option>
-											<option value="257">Pension Related</option>
-											<option value="258">Agricultural Matters Related</option>
-											<option value="259">Credit/Debit/ATM Cards Related</option>
-											<option value="260">Service Charges Related</option>
-											<option value="261">Mobile Banking</option>
+											<option value="Edu Loan">Education Loans Related </option>
+											<option value="Housing loan">Housing Loan Related</option>
+											<option value="PMJDY">Pradhan Mantri Jan Dhan Yojna (PMJDY) Related</option>
+											<option value="Pension">Pension Related</option>
+											<option value="Agriculture">Agricultural Matters Related</option>
+											<option value="cards related">Credit/Debit/ATM Cards Related</option>
+											<option value="Service">Service Charges Related</option>
+											<option value="Mobile banking">Mobile Banking</option>
 										</select>
                             			<span class="field-validation-valid text-danger"></span>
                         			</div>
@@ -217,12 +217,13 @@
                 			<div class="form-group">
                 				<div class="row">
                 					<div class="col-md-4 text-right">
-                						<strong>Attach relevant/supporting documents (if any)</strong>
+                						<strong>Attach relevant/supporting documents</strong><b class="text-danger">*</b>
+                					</label>
                 						<br>
                 						<span class="text-info">Only PDF file upto 4MB is allowed.
                 						</span>
                 					</div>
-                					<div class="col-md-4"><input type="file" name="image" id="fileUpload" />
+                					<div class="col-md-4"><input type="file" required="required" name="image" id="fileUpload" />
                 					</div>
                 				</div>
                 			</div>

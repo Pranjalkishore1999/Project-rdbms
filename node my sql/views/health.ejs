@@ -176,13 +176,13 @@
 			                        <label class="col-md-4 text-right required" for="Category"><b>Select main category</b><b class="text-danger">*</b></label>
 			                        <div class="col-md-6">
 			                            <select autocomplete="off" class="form-control" id="Category_2" name="Category2"><option value="">Please select main category</option>
-											<option value="657">Hospitals</option>
-											<option value="658">Medicines</option>
-											<option value="659">Water Supply</option>
-											<option value="660">Public Health</option>
-											<option value="661">Food Regulation</option>
-											<option value="662">Family Welfare and Schemes</option>
-											<option value="663">Online Health Services</option>
+											<option value="Hospitals">Hospitals</option>
+											<option value="Medicines">Medicines</option>
+											<option value="Water Supply">Water Supply</option>
+											<option value="Public Health">Public Health</option>
+											<option value="Food Regulation">Food Regulation</option>
+											<option value="Family Welfare and Schemes">Family Welfare and Schemes</option>
+											<option value="Online Health Services">Online Health Services</option>
 										</select>
                             			<span class="field-validation-valid text-danger"></span>
                         			</div>
@@ -219,12 +219,13 @@
                 			<div class="form-group">
                 				<div class="row">
                 					<div class="col-md-4 text-right">
-                						<strong>Attach relevant/supporting documents (if any)</strong>
+                						<strong>Attach relevant/supporting documents</strong><b class="text-danger">*</b>
+                					</label>
                 						<br>
                 						<span class="text-info">Only PDF file upto 4MB is allowed.
                 						</span>
                 					</div>
-                					<div class="col-md-4"><input type="file" name="image" id="fileUpload">
+                					<div class="col-md-4"><input type="file" required="required" name="image" id="fileUpload">
                 					</div>
                 				</div>
                 			</div>
