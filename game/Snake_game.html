@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Sneiza</title>
+
+    <link rel="stylesheet" type="text/css" href="snake_game.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <select id="level" onchange="test(this);">
+        <option value="400">Level 1</option>
+        <option value="200">Level 2</option>
+        <option selected="selected" value="100">Level 3</option>
+</select>
+
+    <canvas id="snake" width="640" height="640"></canvas>
+   
+    <form>
+        <input type="button" class="game-restart btn btn-primary" onClick="history.go(0)" value="Restart Your Game">
+         </form>
+    
+        
+    <footer id="footer">
+        <a href="mailto:kishorepranjal1@gmail.com"><i class="contact social-icon fas fa-envelope fa-3x">contact me</i></a>
+            <br><br>
+        <a href="#" target="_blank"><i class="contact fab fa-linkedin fa-3x">Linkdln</i></a>
+        
+        
+        <p>---   Created And Developed  by Pranjal Kishore  ---</p>
+    
+      </footer>
+</body>
+<script src="snake_game.js"></script>
+
+</html>
